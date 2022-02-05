@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.fast5 = "${workflow.workDir}/test.fast5"
+params.fast5 = "${workflow.launchDir}/test.fast5"
 
 fast5 = file(params.fast5)
 
