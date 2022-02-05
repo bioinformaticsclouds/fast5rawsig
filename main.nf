@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.fast5 = "$baseDir/fast5/multi-data/test.fast5"
+params.fast5 = "fast5/multi-data/test.fast5"
 
 fast5 = file(params.fast5)
 
