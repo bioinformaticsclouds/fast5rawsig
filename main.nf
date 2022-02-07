@@ -5,7 +5,7 @@ ch_fast5 = Channel.fromPath("${workflow.launchDir}/data/testdata/*.fast5", check
 process RETRIEVESIG {
     pod runAsUser:1001  
     container 'bioinformaticscloud/f5sigub:latest'
-    publishDir "${workflow.launchDir}/myoutput", mode:copy
+    publishDir "${workflow.launchDir}/myoutput", mode: 'copy'
     
     input:
     path sample from ch_fast5
