@@ -6,6 +6,7 @@
 ch_fast5 = Channel.fromPath("${workflow.launchDir}/data/testdata/*.fast5", checkIfExists: true)
 
 process RETRIEVESIG {
+    
     pod runAsUser:1001  
     process.cpus = 3
     process.memory = '8 GB'
