@@ -8,7 +8,7 @@ ch_fast5 = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
 process RETRIEVESIG {  
     
     container 'bioinformaticscloud/f5sigub:latest'
-    publishDir "$baseDir/data/", mode:link
+    publishDir "${workflow.launchDir}/data/"
     
     input:
     path sample from ch_fast5
