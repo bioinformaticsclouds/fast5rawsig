@@ -12,7 +12,7 @@ process RETRIEVESIG {
     process.memory = '8 GB'
     
     container 'bioinformaticscloud/f5sigub:latest'
-    publishDir "${workflow.launchDir}/data/output", mode:copy
+    publishDir "${workflow.launchDir}/myoutput", mode:copy
     
     input:
     path sample from ch_fast5
