@@ -4,8 +4,6 @@ ch_fast5 = Channel.fromPath("${workflow.launchDir}/data/testdata/*.fast5", check
 
 process RETRIEVESIG {
     pod runAsUser:1001  
-    process.cpus = 3
-    process.memory = '8 GB'
     container 'bioinformaticscloud/f5sigub:latest'
     publishDir "${workflow.launchDir}/myoutput", mode:copy
     
