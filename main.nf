@@ -3,22 +3,21 @@
 
 //params.fast5 = "${workflow.launchDir}/multi-data/test.fast5"
 
-fast5 = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
-name = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
+ch_fast5 = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
 
-process retrieveSig {  
+process RETRIEVESIG {  
     
     container 'bioinformaticscloud/f5sigub:latest'
-    publishDir "$baseDir/data/" 
+    publishDir "$baseDir/data/", mode:link
     
     input:
-    file sample from fast5
+    path sample from ch_fast5
 
     output:
-    file 'out.csv' into outputfiles 
+    file '*.csv' into ch_outputfiles 
  
     script:
     """
-    getSig.py $sample >> out.csv 
+    getSig.py $sample > ${sample.baseName}.csv 
     """
 }
