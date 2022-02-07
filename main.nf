@@ -1,8 +1,10 @@
 #!/usr/bin/env nextflow
+// workflow.workDir /workspace/sunhao100/work
 
-params.fast5 = "${workflow.launchDir}/multi-data/test.fast5"
+//params.fast5 = "${workflow.launchDir}/multi-data/test.fast5"
 
-fast5 = file(params.fast5)
+fast5 = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
+name = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
 
 process retrieveSig {  
     
@@ -10,13 +12,13 @@ process retrieveSig {
     publishDir "$baseDir/data/" 
     
     input:
-    file fast5_file from fast5
- 
+    file sample from fast5
+
     output:
-    file 'sigRaw.csv' into signals
+    file 'out.csv' into outputfiles 
  
     script:
     """
-    getSig.py ${fast5_file} > sigRaw.csv 
+    getSig.py $sample >> out.csv 
     """
 }
