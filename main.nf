@@ -3,12 +3,11 @@
 
 //params.fast5 = "${workflow.launchDir}/multi-data/test.fast5"
 
-ch_fast5 = Channel.fromPath("${workflow.launchDir}/testdata/*.fast5")
+ch_fast5 = Channel.fromPath("${workflow.launchDir}/data/testdata/*.fast5", checkIfExists: true)
 
 process RETRIEVESIG {  
-    
     container 'bioinformaticscloud/f5sigub:latest'
-    publishDir "${workflow.launchDir}/data/"
+    publishDir "${workflow.launchDir}/data/output"
     
     input:
     path sample from ch_fast5
